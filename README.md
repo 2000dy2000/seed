@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # springboot-restful-starter
 
 SpringBoot RESTful API 脚手架
@@ -54,3 +55,7 @@ SpringBoot RESTful API 脚手架
 ## License
 
 [MIT](./LICENSE)
+=======
+# seed
+marking的后端实现
+>>>>>>> 7cbbcce7720f235947307e7c9edecf6e0fb68778
