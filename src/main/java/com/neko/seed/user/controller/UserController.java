@@ -55,7 +55,7 @@ public class UserController {
      * 查看用户列表
      */
     @GetMapping("/list")
-    public Result list(@Auth Long userId) {
+    public Result list() {
         // 该接口需要检测用户是否登陆
         return new Result().success(userService.list());
     }

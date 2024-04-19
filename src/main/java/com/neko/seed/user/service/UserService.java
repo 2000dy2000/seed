@@ -7,6 +7,6 @@ import com.neko.seed.user.entity.User;
 import com.neko.seed.user.view.SignInView;
 
 public interface UserService extends IService<User> {
-    SignInView signIn(SignInData data);
+    long signIn(SignInData data);
     void signUp(SignUpData data);
 }

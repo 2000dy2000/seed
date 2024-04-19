@@ -22,32 +22,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     @Autowired
     private UserMapper userMapper;
 
-    @Autowired
-    private TokenService tokenService;
-
     @Override
-    public SignInView signIn(SignInData data) {
+    public long signIn(SignInData data) {
         // 找到对应name的用户
-        User user = userMapper.selectOne(new QueryWrapper<User>().select("id,name,password").eq("name", data.getName()));
+        User user = userMapper.selectOne(new QueryWrapper<User>().select("id,username,password").eq("username", data.getUsername()));
         // 判断用户是否存在
         if (user != null) {
             // 校验密码
-            if(data.getPassword().equals(user.getPassword())) {
-                // 校验通过，登陆成功，返回Token
-                SignInView signInView = new SignInView();
-                // 生成AccessToken
-                signInView.setAccessToken(tokenService.generate(TokenSubject.ACCESS,user.getId()));
-                // 生成RrefreshToken，有效期为24小时
-                signInView.setRefreshToken(tokenService.generate(TokenSubject.REFRESH,user.getId(),24));
-                return signInView;
+            if (data.getPassword().equals(user.getPassword())) {
+                return user.getId();
             } else {
-                // 自定义异常示范
-                throw new PasswordErrorException();
+                return -1;
             }
-
-        } else {
-            // 抛出用户不存在的服务异常
-            throw new UserNotFoundException();
+        }else {
+            return -1;
         }
     }
 

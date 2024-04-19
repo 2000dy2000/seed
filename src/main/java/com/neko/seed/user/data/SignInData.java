@@ -8,8 +8,9 @@ import javax.validation.constraints.NotBlank;
 @Data
 @Accessors(chain = true)
 public class SignInData {
+    private Long id;
     @NotBlank
-    private String name;
+    private String username;
     @NotBlank
     private String password;
 }
